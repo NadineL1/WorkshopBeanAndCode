@@ -41,17 +41,17 @@ public partial class Program
 
         // get all categories
 
-        /*app.MapGet("/categories", () =>
+        app.MapGet("/categories", (BeanDbContext context) =>
         {
-            return Results.Ok(categories);
+            return Results.Ok(context.Categories);
         });
 
         // get one specific category
-        app.MapGet("/categories/{id}", (int id) =>
+        app.MapGet("/categories/{id}", (BeanDbContext context, int id) =>
         {
-            return Results.Ok(categories.FirstOrDefault(c => c.Id == id));
+            return Results.Ok(context.Categories.FirstOrDefault(c => c.Id == id));
         });
-
+/*
         // post, add a category
         app.MapPost("/categories", (Category category) =>
         {
@@ -135,8 +135,8 @@ public partial class Program
 
             var filteredProducts = products.FindAll(p => p.CategoryKeyId == id).ToList();
             return Results.Ok(filteredProducts);
-        });*/
-        
+        });
+        */
         
         app.MapControllers();
 
