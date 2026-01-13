@@ -8,27 +8,7 @@ public partial class Program
 {
     private static void Main(string[] args)
     {
-        List<Product> products = new();
-        List<Category> categories = new();
-
-        categories.AddRange(
-            new Category { Id = 1, Name= "Varma drycker"},
-            new Category{ Id = 2, Name= "Kalla drycker"},
-            new Category { Id= 3, Name= "Bakverk"}
-            );
-
-
-        products.AddRange(
-            new Product { Id= 1, Name= "Espresso", Description= "En stark italiensk kaffespecialitet", Price= 25M, CategoryKeyId= 1},
-            new Product { Id= 2, Name= "Coffe", Description="Svart bryggt kaffe", Price= 20M, CategoryKeyId= 1},
-            new Product { Id= 3, Name= "Latte", Description= "Mild kaffedrink med mycket mjölk", Price=40M, CategoryKeyId= 1},
-            new Product { Id= 4, Name= "Te", Description="English breakfast", Price= 15M, CategoryKeyId= 1},
-            new Product { Id= 5, Name= "Cheesecake", Description="En klassiker direkt från New York", Price= 45M, CategoryKeyId= 3},
-            new Product { Id= 6, Name= "Trocadero", Description="En fruktig och kall svensk ikon", Price= 20, CategoryKeyId= 2},
-            new Product { Id= 7, Name= "Kanelbulle", Description="Det bästa bakverket", Price=40M , CategoryKeyId=3},
-            new Product { Id =8, Name ="Delicatoboll", Description = "Klassisk fabrikat chokladboll", Price =25M, CategoryKeyId = 3}
-            );
-   
+       
 
 
 
@@ -41,7 +21,7 @@ public partial class Program
         builder.Services.AddOpenApi();
 
         builder.Services.AddDbContext<BeanDbContext>(options => 
-            options.UseSqlServer(builder.Configuration.GetConnectionString("Defaultconnetion")));
+            options.UseSqlServer(builder.Configuration.GetConnectionString("Defaultconnection")));
 
         var app = builder.Build();
 
@@ -60,7 +40,8 @@ public partial class Program
         // API requests for categories
 
         // get all categories
-        app.MapGet("/categories", () =>
+
+        /*app.MapGet("/categories", () =>
         {
             return Results.Ok(categories);
         });
@@ -154,7 +135,7 @@ public partial class Program
 
             var filteredProducts = products.FindAll(p => p.CategoryKeyId == id).ToList();
             return Results.Ok(filteredProducts);
-        });
+        });*/
         
         
         app.MapControllers();
