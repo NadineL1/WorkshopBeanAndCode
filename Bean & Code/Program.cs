@@ -1,6 +1,8 @@
 // adding test data with a list
+using Bean___Code.Data;
 using Bean___Code.Models;
 using Microsoft.AspNetCore.Http.HttpResults;
+using Microsoft.EntityFrameworkCore;
 
 public partial class Program
 {
@@ -37,6 +39,9 @@ public partial class Program
         builder.Services.AddControllers();
         // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
         builder.Services.AddOpenApi();
+
+        builder.Services.AddDbContext<BeanDbContext>(options => 
+            options.UseSqlServer(builder.Configuration.GetConnectionString("Defaultconnetion")));
 
         var app = builder.Build();
 
